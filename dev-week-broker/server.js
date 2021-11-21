@@ -47,7 +47,10 @@ export class AedesListeners {
 
   messagePublication(aedes) {
     aedes.on('publish', (packet, client) => {
-      console.log(`MQTT client ${client ? client.id : 'undisclosed'}
+      if (packet.topic === 'mqttTest') {
+        aedes.publish({topic: 'mqttResponseTest', payload: 'This is le broker saying hi'})
+      }
+      console.log(`MQTT client ${client ? client.id : client}
       \x1b[0m has published ${packet.payload.toString()}
       on the topic ${packet.topic}`)
     });
