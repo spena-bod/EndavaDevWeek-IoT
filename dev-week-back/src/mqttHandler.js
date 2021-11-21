@@ -1,12 +1,14 @@
 import mqtt from 'mqtt';
 
 export class MqttHandler {
-  constructor() {
+  constructor(redisInstance) {
     this.mqttClient = null;
+    this.redisInstance = redisInstance;
+    this.createMqttConnection();
   }
 
   createMqttConnection() {
-    this.mqttClient = mqtt.connect('0.0.0.0:1883');
+    this.mqttClient = mqtt.connect('mqtt://0.0.0.0:1883');
     this.mqttClient.on('connect', () => {
       console.log('mqtt client connected');
     });

@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import redis from 'redis';
-import { Routes } from './routes/routes';
+import { Routes } from './routes/routes.js';
 
 
 export class App {
@@ -27,7 +27,7 @@ export class App {
   }
 
   initHttpServer(port) {
-    const server = this.app.listen(port, () => {
+    this.app.listen(port, () => {
       console.log(`Express server listening on port ${port}`);
     });
   }
